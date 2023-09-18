@@ -1,0 +1,905 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/image/fluid.png">
+  <link rel="icon" href="/image/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="嘟小嘴">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="SpringBoot框架第一章 常见面试题【1】什么是 Spring Boot？多年来，随着新功能的增加，spring 变得越来越复杂。只需访问https:&#x2F;&#x2F;spring.io&#x2F;projects 页面，我们就会看到可以在我们的应用程序中使用的所有 Spring 项目的不同功能。如果必须启动一个新的 Spring 项目，我们必须添加构建路径或添加 Maven 依赖关系，配置应用程序服务器，添加 s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="11.springboot">
+<meta property="og:url" content="http://example.com/2023/09/14/11-springboot/index.html">
+<meta property="og:site_name" content="嘟小嘴">
+<meta property="og:description" content="SpringBoot框架第一章 常见面试题【1】什么是 Spring Boot？多年来，随着新功能的增加，spring 变得越来越复杂。只需访问https:&#x2F;&#x2F;spring.io&#x2F;projects 页面，我们就会看到可以在我们的应用程序中使用的所有 Spring 项目的不同功能。如果必须启动一个新的 Spring 项目，我们必须添加构建路径或添加 Maven 依赖关系，配置应用程序服务器，添加 s">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-09-14T06:58:19.000Z">
+<meta property="article:modified_time" content="2023-09-14T09:04:11.652Z">
+<meta property="article:author" content="嘟小嘴">
+<meta property="article:tag" content="java面试题">
+<meta property="article:tag" content="原创">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>11.springboot - 嘟小嘴</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"YdGP8UOgPO4ZRNTwlQPPSYYJ-gzGzoHsz","app_key":"Imt0sPysGbwXpPLZzZlEMJGu","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 75vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>嘟小嘴</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/image/%E6%96%87%E7%AB%A0%E9%BB%98%E8%AE%A4.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="11.springboot"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        嘟小嘴
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-14 14:58" pubdate>
+          2023年9月14日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          65 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">11.springboot</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：4 天前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="SpringBoot框架"><a href="#SpringBoot框架" class="headerlink" title="SpringBoot框架"></a>SpringBoot框架</h1><h2 id="第一章-常见面试题"><a href="#第一章-常见面试题" class="headerlink" title="第一章 常见面试题"></a>第一章 常见面试题</h2><h3 id="【1】什么是-Spring-Boot？"><a href="#【1】什么是-Spring-Boot？" class="headerlink" title="【1】什么是 Spring Boot？"></a><strong>【1】什么是 Spring Boot？</strong></h3><p>多年来，随着新功能的增加，spring 变得越来越复杂。只需访问<a target="_blank" rel="noopener" href="https://spring.io/projects">https://spring.io/projects</a> 页面，我们就会看到可以在我们的应用程序中使用的所有 Spring 项目的不同功能。如果必须启动一个新的 Spring 项目，我们必须添加构建路径或添加 Maven 依赖关系，配置应用程序服务器，添加 spring 配置。因此，开始一个新的 spring 项目需要很多努力，因为我们现在必须从头开始做所有事情。Spring Boot 是解决这个问题的方法。Spring Boot 已经建立在现有 spring 框架之上。使用 spring 启动，我们避免了之前我们必须做的所有样板代码和配置。因此，Spring Boot 可以帮助我们以最少的工作量，更加健壮地使用现有的 Spring功能。</p>
+<h3 id="【2】Spring-Boot-有哪些优点？"><a href="#【2】Spring-Boot-有哪些优点？" class="headerlink" title="【2】Spring Boot 有哪些优点？"></a><strong>【2】Spring Boot 有哪些优点？</strong></h3><p>Spring Boot 的优点有：</p>
+<ol>
+<li>减少开发，测试时间。</li>
+<li>使用 JavaConfig 有助于避免使用 XML。</li>
+<li>避免大量的 Maven 导入和各种版本冲突。</li>
+<li>提供意见发展方法。</li>
+<li>提供默认值快速开始开发。</li>
+<li>没有单独的 Web 服务器需要。这意味着你不再需要启动 Tomcat，Glassfish或其他任何东西。</li>
+<li>需要更少的配置 因为没有 web.xml 文件。只需添加用@ Configuration 注释的类，然后添加用@Bean 注释的方法，Spring 将自动加载对象并像以前一样对其进行管理。您甚至可以将@Autowired 添加到 bean 方法中，以使 Spring 自动装入需要的依赖关系中。</li>
+</ol>
+<h3 id="【3】如何重新加载-Spring-Boot-上的更改，而无需重新启动服务器？"><a href="#【3】如何重新加载-Spring-Boot-上的更改，而无需重新启动服务器？" class="headerlink" title="【3】如何重新加载 Spring Boot 上的更改，而无需重新启动服务器？"></a><strong>【3】如何重新加载 Spring Boot 上的更改，而无需重新启动服务器？</strong></h3><p>答：通过Springboot的DevTools插件实现。</p>
+<h3 id="【4】Spring-Boot-中的监视器是什么？"><a href="#【4】Spring-Boot-中的监视器是什么？" class="headerlink" title="【4】Spring Boot 中的监视器是什么？"></a><strong>【4】Spring Boot 中的监视器是什么？</strong></h3><p>Spring boot actuator 是 spring 启动框架中的重要功能之一。Spring boot 监视器可帮助您访问生产环境中正在运行的应用程序的当前状态。有几个指标必须在生产环境中进行检查和监控。即使一些外部应用程序可能正在使用这些服务来向相关人员触发警报消息。监视器模块公开了一组可直接作为 HTTP URL 访问的REST 端点来检查状态。</p>
+<h3 id="【5】如何在-Spring-Boot-中禁用-Actuator-端点安全性？"><a href="#【5】如何在-Spring-Boot-中禁用-Actuator-端点安全性？" class="headerlink" title="【5】如何在 Spring Boot 中禁用 Actuator 端点安全性？"></a><strong>【5】如何在 Spring Boot 中禁用 Actuator 端点安全性？</strong></h3><p>默认情况下，所有敏感的 HTTP 端点都是安全的，只有具有 ACTUATOR 角色的用户才能访问它们。安全性是使用标准的 HttpServletRequest.isUserInRole 方法实施的。 我们可以使用来禁用安全性。只有在执行机构端点在防火墙后访问时，才建议禁用安全性。</p>
+<h3 id="【6】如何在自定义端口上运行-Spring-Boot-应用程序？"><a href="#【6】如何在自定义端口上运行-Spring-Boot-应用程序？" class="headerlink" title="【6】如何在自定义端口上运行 Spring Boot 应用程序？"></a><strong>【6】如何在自定义端口上运行 Spring Boot 应用程序？</strong></h3><p>为了在自定义端口上运行 Spring Boot 应用程序，您可以在application.properties 中指定端口。server.port &#x3D; 8090</p>
+<h3 id="【7】什么是-YAML？"><a href="#【7】什么是-YAML？" class="headerlink" title="【7】什么是 YAML？"></a><strong>【7】什么是 YAML？</strong></h3><p>YAML 是一种人类可读的数据序列化语言。它通常用于配置文件。与属性文件相比，如果我们想要在配置文件中添加复杂的属性，YAML 文件就更加结构化，而且更少混淆。可以看出 YAML 具有分层配置数据。</p>
+<h3 id="【8】如何实现-Spring-Boot-应用程序的安全性？"><a href="#【8】如何实现-Spring-Boot-应用程序的安全性？" class="headerlink" title="【8】如何实现 Spring Boot 应用程序的安全性？"></a><strong>【8】如何实现 Spring Boot 应用程序的安全性？</strong></h3><p>为了实现 Spring Boot 的安全性，我们使用 spring-boot-starter-security 依赖项，并且必须添加安全配置。它需要很少的代码。配置类将必须扩展WebSecurityConfigurerAdapter 并覆盖其方法。</p>
+<h3 id="【9】什么是-Swagger？你用-Spring-Boot-实现了它吗？"><a href="#【9】什么是-Swagger？你用-Spring-Boot-实现了它吗？" class="headerlink" title="【9】什么是 Swagger？你用 Spring Boot 实现了它吗？"></a><strong>【9】什么是 Swagger？你用 Spring Boot 实现了它吗？</strong></h3><p>Swagger 广泛用于可视化 API，使用 Swagger UI 为前端开发人员提供在线沙箱。Swagger 是用于生成 RESTful Web 服务的可视化表示的工具，规范和完整框架实现。它使文档能够以与服务器相同的速度更新。当通过 Swagger 正确定义时，消费者可以使用最少量的实现逻辑来理解远程服务并与其进行交互。因此，Swagger消除了调用服务时的猜测。</p>
+<p>@Api</p>
+<p>@ApiOperation</p>
+<p>@ApiParam</p>
+<h3 id="【10】什么是-Spring-Profiles？"><a href="#【10】什么是-Spring-Profiles？" class="headerlink" title="【10】什么是 Spring Profiles？"></a><strong>【10】什么是 Spring Profiles？</strong></h3><p>Spring Profiles 允许用户根据配置文件（dev，test，prod 等）来注册 bean。因此，当应用程序在开发中运行时，只有某些 bean 可以加载，而在 PRODUCTION中，某些其他 bean 可以加载。假设我们的要求是 Swagger 文档仅适用于 QA 环境，并且禁用所有其他文档。这可以使用配置文件来完成。Spring Boot 使得使用配置文件非常简单。</p>
+<ol>
+<li>在application.yml中激活多环境配置</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">profiles:</span><br>	<span class="hljs-attr">active:</span> <span class="hljs-string">prop</span><br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在application-prop中配置配置信息。</li>
+</ol>
+<h3 id="【11】什么是-Thymeleaf模板？"><a href="#【11】什么是-Thymeleaf模板？" class="headerlink" title="【11】什么是 Thymeleaf模板？"></a><strong>【11】什么是 Thymeleaf模板？</strong></h3><p>SpringBoot默认不支持jsp模板引擎，它支持的是Thymeleaf模板引擎，Thymeleaf是一个现代化服务器端java模板引擎，它的语法类似于jsp,非常简单易学；由于现代开发一般都采用前后端分离开发，这里只讲解thymeleaf的c常用用法。 </p>
+<h3 id="【12】如何使用-Spring-Boot-实现异常处理？"><a href="#【12】如何使用-Spring-Boot-实现异常处理？" class="headerlink" title="【12】如何使用 Spring Boot 实现异常处理？"></a><strong>【12】如何使用 Spring Boot 实现异常处理？</strong></h3><p>Spring 提供了一种使用 @RestControllerAdvice 处理异常的非常有用的方法。 我们通过实现一个 @RestControllerAdvice类，来处理控制器类抛出的所有异常。</p>
+<p>然后在该类的方法中定义指定异常的捕获处理，如</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"> <span class="hljs-meta">@ExceptionHandler(Exception.class)</span><br><span class="hljs-keyword">public</span> Result <span class="hljs-title function_">error</span><span class="hljs-params">(Exception e)</span>&#123;<br>    log.error(e.getMessage());<br>    <span class="hljs-keyword">return</span> Result.fail(<span class="hljs-literal">null</span>).message(e.getMessage());<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="【13】您使用了哪些-starter-maven-依赖项？"><a href="#【13】您使用了哪些-starter-maven-依赖项？" class="headerlink" title="【13】您使用了哪些 starter maven 依赖项？"></a><strong>【13】您使用了哪些 starter maven 依赖项？</strong></h3><p>使用了下面的一些依赖项spring-boot-starter-activemq、spring-boot-starter-security这有助于增加更少的依赖关系，并减少版本的冲突。</p>
+<h3 id="【14】什么是-CSRF-攻击？"><a href="#【14】什么是-CSRF-攻击？" class="headerlink" title="【14】什么是 CSRF 攻击？"></a><strong>【14】什么是 CSRF 攻击？</strong></h3><p>CSRF 代表跨站请求伪造。这是一种攻击，迫使最终用户在当前通过身份验证的Web 应用程序上执行不需要的操作。CSRF 攻击专门针对状态改变请求，而不是数据窃取，因为攻击者无法查看对伪造请求的响应。</p>
+<h3 id="【15】SpringBoot的底层原理？"><a href="#【15】SpringBoot的底层原理？" class="headerlink" title="【15】SpringBoot的底层原理？"></a><strong>【15】SpringBoot的底层原理？</strong></h3><p>答：SpringBoot工作原理主要由三个方面构成的，第一个是pom文件继承父工程，父工程将常见启动器做了版本控制。第二个是场景启动器，场景启动器就是maven工程，对应用场景进行封装打包。第三个是启动类，启动类@SpringBootApplication底层注解做了三件事，启动类本身是配置类，启动类加载当前类所在包下的所有注解，启动类按照条件加载第三方场景启动配置类，例如很多都是有class文件就加载启动类，就意味着添加依赖，自动注入场景启动器的对象。</p>
+<h3 id="【16】跨域？"><a href="#【16】跨域？" class="headerlink" title="【16】跨域？"></a><strong>【16】跨域？</strong></h3><p>答：跨域指的是：从一个域名的网页去请求另一个域名的资源时，域名、端口、协议任一不同，都是跨域。跨域是由浏览器的同源策略造成的，是浏览器施加的安全限制。a页面想获取b页面资源，如果a、b页面的协议、域名、端口、子域名不同，所进行的访问行动都是跨域的</p>
+<p><strong>同源策略：是指协议，域名，端口都要相同，其中有一个不同都会产生跨域；</strong></p>
+<p>如何解决跨域？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">WebConfig</span>&#123;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> WebMvcConfigurer <span class="hljs-title function_">webMvcConfigurer</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">WebMvcConfigurer</span>() &#123;<br>            ...<br>            <span class="hljs-meta">@Override</span> <span class="hljs-comment">//设置预检请求</span><br>            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addCorsMappings</span><span class="hljs-params">(CorsRegistry registry)</span> &#123;<br>                <span class="hljs-comment">//允许所有请求跨域</span><br>                registry.addMapping(<span class="hljs-string">&quot;/**&quot;</span>)<br>                        <span class="hljs-comment">//接收任意域名的跨域请求</span><br>                        .allowedOrigins(<span class="hljs-string">&quot;*&quot;</span>)<br>                        <span class="hljs-comment">//支持任意字段的请求头</span><br>                        .allowedHeaders(<span class="hljs-string">&quot;*&quot;</span>)<br>                        <span class="hljs-comment">//支持的提交方式</span><br>                        .allowedMethods(<span class="hljs-string">&quot;GET&quot;</span>,<span class="hljs-string">&quot;POST&quot;</span>,<span class="hljs-string">&quot;DELETE&quot;</span>,<span class="hljs-string">&quot;PUT&quot;</span>)<br>                        <span class="hljs-comment">//不支持提交cookie</span><br>                        .allowCredentials(<span class="hljs-literal">false</span>)<br>                        <span class="hljs-comment">//预检请求时间</span><br>                        .maxAge(<span class="hljs-number">3000</span>);<br>            &#125;<br>        &#125;;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Bean</span><br><span class="hljs-keyword">public</span> CorsFilter <span class="hljs-title function_">corsFilter</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-type">CorsConfiguration</span> <span class="hljs-variable">config</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">CorsConfiguration</span>();<br>    <span class="hljs-comment">//接受任意域名的请求</span><br>    config.addAllowedOrigin(<span class="hljs-string">&quot;*&quot;</span>);<br>    <span class="hljs-comment">//不支持提交COOKIE数据</span><br>    config.setAllowCredentials(<span class="hljs-literal">false</span>);<br>    <span class="hljs-comment">//绑定请求头信息，使用通配符*接受任意字段</span><br>    config.addAllowedHeader(<span class="hljs-string">&quot;*&quot;</span>);<br>    <span class="hljs-comment">//支持任意提交方法</span><br>    config.addAllowedMethod(<span class="hljs-string">&quot;*&quot;</span>);<br>    <span class="hljs-type">UrlBasedCorsConfigurationSource</span> <span class="hljs-variable">configSource</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">UrlBasedCorsConfigurationSource</span>();<br>    configSource.registerCorsConfiguration(<span class="hljs-string">&quot;/**&quot;</span>,config);<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">CorsFilter</span>(configSource);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@CrossOrigin</span> <span class="hljs-comment">//跨域</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="【17】原生组件的注入"><a href="#【17】原生组件的注入" class="headerlink" title="【17】原生组件的注入"></a>【17】原生组件的注入</h3><p>我们开可以向容器中注入ServletRegistrationBean&#x2F;FilterRegistrationBean&#x2F;ServletListenerRegistrationBean组件的方式注入servelt&#x2F;filter&#x2F;listener</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyConfig2</span> &#123;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> ServletRegistrationBean <span class="hljs-title function_">servletRegistrationBean</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-type">MyServlet</span> <span class="hljs-variable">myServlet</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyServlet</span>();<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ServletRegistrationBean</span>(myServlet,<span class="hljs-string">&quot;/myServlet&quot;</span>);<br>    &#125;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> FilterRegistrationBean <span class="hljs-title function_">filterRegistrationBean</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-type">MyFilter</span> <span class="hljs-variable">myFilter</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyFilter</span>();<br>        <span class="hljs-type">FilterRegistrationBean</span> <span class="hljs-variable">filterRegistrationBean</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FilterRegistrationBean</span>(myFilter);<br>        filterRegistrationBean.setUrlPatterns(Arrays.asList(<span class="hljs-string">&quot;/*&quot;</span>));<br>        <span class="hljs-keyword">return</span> filterRegistrationBean;<br>    &#125;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> ServletListenerRegistrationBean <span class="hljs-title function_">servletListenerRegistrationBean</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-type">MyListener</span> <span class="hljs-variable">myListener</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyListener</span>();<br>        <span class="hljs-type">ServletListenerRegistrationBean</span> <span class="hljs-variable">servletListenerRegistrationBean</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ServletListenerRegistrationBean</span>(myListener);<br>        <span class="hljs-keyword">return</span> servletListenerRegistrationBean;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="【18】说以下你都用过mp的哪些功能？"><a href="#【18】说以下你都用过mp的哪些功能？" class="headerlink" title="【18】说以下你都用过mp的哪些功能？"></a>【18】说以下你都用过mp的哪些功能？</h3><p>答：MybaitsPlus是Mybatis的升级，而不是替换，所以Mybatis的功能MybaitsPlus都支持，在此基础上我还用过以下功能：</p>
+<ul>
+<li>通过TableId 指定主键输入的类型</li>
+<li>使用MetaObjectHandler完成创建日期和更新日期的字段填充，当然需要子日期字段配置注解</li>
+<li>使用@version注解完成基于sql的乐观锁功能</li>
+<li>使用@TableLogic完成逻辑删除</li>
+<li>使用QueryWrapper 完成查询，使用LambdaQueryWrapper完成查询</li>
+</ul>
+<h3 id="【19】说一下JWT登录的执行流程？"><a href="#【19】说一下JWT登录的执行流程？" class="headerlink" title="【19】说一下JWT登录的执行流程？"></a>【19】说一下JWT登录的执行流程？</h3><p>答：Jwt登录流程如下：</p>
+<ol>
+<li>客户端使用用户名和密码请求登录</li>
+<li>服务端收到请求，去验证用户名与密码</li>
+<li>验证成功后，服务器颁发一个Token,再把这个Token发送给客户端（一般情况下，我们会把用户信息存到redis中，存储的key是工程：业务：用户id,value存user转json后的用户信息）</li>
+<li>客户端收到Token以后可以把它存储起来</li>
+<li>客户端每次向服务器端请求资源的时候需要带着服务端颁发的Token</li>
+<li>服务端收到请求，然后去验证客户端请求里面带着的Token,如果验证成功，就向客户端返回请求的数据。（这里可以通过过滤器或拦截器实现，如果用springSecurity框架实现，那么必须用过滤器实现，并将过滤器设置到SpringSecurity的配置类中，保证在最前面执行）</li>
+</ol>
+<h3 id="【20】说一下你通过SpringSecurity如何完成登录和授权的。"><a href="#【20】说一下你通过SpringSecurity如何完成登录和授权的。" class="headerlink" title="【20】说一下你通过SpringSecurity如何完成登录和授权的。"></a>【20】说一下你通过SpringSecurity如何完成登录和授权的。</h3><p>答：完成登录功能如下：</p>
+<ol>
+<li><p>获得客户端的用户名和密码，将用户名和密码封装成UsernamePasswordAuthenticationToken，然后将它交给authenticationManager认证，认证返回Authentication对象</p>
+</li>
+<li><p>判断认证对象是否为空，为空表示认证失败，不为空认证成功，认证成功做两件事</p>
+<ol>
+<li>将用户信息存入redis</li>
+<li>根据用户信息生成token返回客户端</li>
+</ol>
+</li>
+<li><p>此后的每次请求都要携带token，被认证过滤器拦截，认证过滤器获取token，解析token，解析失败返回认证失败，解析成功刷新token，刷新redis,将用户信息封装到UsernamePasswordAuthenticationToken对象。最后通过 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);</p>
+<p>表示用户认证通过。</p>
+</li>
+<li><p>前面的功能需要配置SpringSecurity配置类的前提下使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SecurityConfig</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">WebSecurityConfigurerAdapter</span> &#123;<br>    <span class="hljs-comment">//1.密码加密</span><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> PasswordEncoder <span class="hljs-title function_">passwordEncoder</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BCryptPasswordEncoder</span>();<br>    &#125;<br><br>    <span class="hljs-comment">//2.配置认证service</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">configure</span><span class="hljs-params">(AuthenticationManagerBuilder auth)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        auth.userDetailsService(<span class="hljs-literal">null</span>);<br>    &#125;<br><br>    <span class="hljs-comment">//3.配置认证管理器</span><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> AuthenticationManager <span class="hljs-title function_">authenticationManagerBean</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">super</span>.authenticationManagerBean();<br>    &#125;<br><br>    <span class="hljs-comment">//4.配置过滤器链忽略路径</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">configure</span><span class="hljs-params">(WebSecurity web)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-comment">//过滤链忽略的路径</span><br>        web.ignoring().antMatchers(<span class="hljs-string">&quot;/hello&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">//5.认证过滤链核心配置</span><br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">configure</span><span class="hljs-params">(HttpSecurity http)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-comment">//1.关闭跨域防护</span><br>        http.csrf().disable();<br>        <span class="hljs-comment">//2.允许跨域</span><br>        http.cors();<br>        <span class="hljs-comment">//3.关闭iframe窗口防护</span><br>        http.headers().frameOptions().disable();<br>        <span class="hljs-comment">//4.关闭session会话</span><br>        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);<br>        <span class="hljs-comment">//5.配置路径拦截,/user/login,在过滤链上放行,其他请求必须认证</span><br>        http.authorizeRequests().mvcMatchers(<span class="hljs-string">&quot;/user/login&quot;</span>).permitAll().anyRequest().authenticated();<br>        <span class="hljs-comment">//6.配置认证失败异常处理</span><br>        http.exceptionHandling().authenticationEntryPoint(<span class="hljs-literal">null</span>);<br>        <span class="hljs-comment">//7.配置权限不足异常处理</span><br>        http.exceptionHandling().accessDeniedHandler(<span class="hljs-literal">null</span>);<br>        <span class="hljs-comment">//8.在过滤链上某个过滤器之前执行</span><br>        http.addFilterBefore(<span class="hljs-literal">null</span>,Object.class);<br>        <span class="hljs-comment">//9.在过滤连上某个过滤器之后执行</span><br>        http.addFilterAfter(<span class="hljs-literal">null</span>,Object.class);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>授权功能如下：</p>
+<ol>
+<li>先用户分配角色功能</li>
+<li>在完成角色分配菜单功能</li>
+<li>客户端访问后端接口的时候查询用户拥有的角色，角色拥有的权限，去和方法上的权限注解去比对，比对成功响应数据，失败返回权限不足。</li>
+<li>常见权限注解是 @PreAuthorize(“hasAuthority(‘test’)”)</li>
+<li>使用权限注解需要在配置类上开启开关：@EnableWebSecurity &#x2F;&#x2F;开启springSecurity框架<br>@EnableGlobalMethodSecurity(prePostEnabled &#x3D; true)&#x2F;&#x2F;开启权限注解开发</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/java%E9%9D%A2%E8%AF%95%E9%A2%98/" class="print-no-link">#java面试题</a>
+      
+        <a href="/tags/%E5%8E%9F%E5%88%9B/" class="print-no-link">#原创</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>11.springboot</div>
+      <div>http://example.com/2023/09/14/11-springboot/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>嘟小嘴</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月14日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年9月14日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/09/15/12-mysql/" title="12.mysql">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">12.mysql</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/09/14/10-ssm%E6%A1%86%E6%9E%B6/" title="10.ssm框架">
+                        <span class="hidden-mobile">10.ssm框架</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"YdGP8UOgPO4ZRNTwlQPPSYYJ-gzGzoHsz","appKey":"Imt0sPysGbwXpPLZzZlEMJGu","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <i href="#"  class="iconfont icon-love">Duxiaozui博客</i> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

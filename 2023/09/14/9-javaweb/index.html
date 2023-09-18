@@ -1,0 +1,941 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/image/fluid.png">
+  <link rel="icon" href="/image/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="嘟小嘴">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="javaWeb技术第一章 知识复盘servletjsp会话过滤器监听器第二章 常见面试题【1】简述http协议？答：超文本传输协议（Hyper Text Transfer Protocol，HTTP）是一个简单的请求-响应协议，它通常运行在TCP之上，属于应用层协议。http协议由两部分组成，一部分是请求协议，一部分是响应协议。其中请求协议包含：请求行、请求头、请求体。响应协议包含：相应行、响应头">
+<meta property="og:type" content="article">
+<meta property="og:title" content="9.javaweb">
+<meta property="og:url" content="http://example.com/2023/09/14/9-javaweb/index.html">
+<meta property="og:site_name" content="嘟小嘴">
+<meta property="og:description" content="javaWeb技术第一章 知识复盘servletjsp会话过滤器监听器第二章 常见面试题【1】简述http协议？答：超文本传输协议（Hyper Text Transfer Protocol，HTTP）是一个简单的请求-响应协议，它通常运行在TCP之上，属于应用层协议。http协议由两部分组成，一部分是请求协议，一部分是响应协议。其中请求协议包含：请求行、请求头、请求体。响应协议包含：相应行、响应头">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-09-14T06:57:47.000Z">
+<meta property="article:modified_time" content="2023-09-14T09:01:01.676Z">
+<meta property="article:author" content="嘟小嘴">
+<meta property="article:tag" content="java面试题">
+<meta property="article:tag" content="原创">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>9.javaweb - 嘟小嘴</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"YdGP8UOgPO4ZRNTwlQPPSYYJ-gzGzoHsz","app_key":"Imt0sPysGbwXpPLZzZlEMJGu","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 75vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>嘟小嘴</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/image/%E6%96%87%E7%AB%A0%E9%BB%98%E8%AE%A4.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="9.javaweb"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        嘟小嘴
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-14 14:57" pubdate>
+          2023年9月14日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          32 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">9.javaweb</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：4 天前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="javaWeb技术"><a href="#javaWeb技术" class="headerlink" title="javaWeb技术"></a>javaWeb技术</h1><h2 id="第一章-知识复盘"><a href="#第一章-知识复盘" class="headerlink" title="第一章 知识复盘"></a>第一章 知识复盘</h2><h3 id="servlet"><a href="#servlet" class="headerlink" title="servlet"></a>servlet</h3><h3 id="jsp"><a href="#jsp" class="headerlink" title="jsp"></a>jsp</h3><h3 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h3><h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><h3 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h3><h2 id="第二章-常见面试题"><a href="#第二章-常见面试题" class="headerlink" title="第二章 常见面试题"></a>第二章 常见面试题</h2><h3 id="【1】简述http协议？"><a href="#【1】简述http协议？" class="headerlink" title="【1】简述http协议？"></a>【1】简述http协议？</h3><p>答：超文本传输协议（Hyper Text Transfer Protocol，HTTP）是一个简单的请求-响应协议，它通常运行在TCP之上，属于应用层协议。http协议由两部分组成，一部分是请求协议，一部分是响应协议。其中请求协议包含：请求行、请求头、请求体。响应协议包含：相应行、响应头，响应体。http路径规范如下：例如： <a target="_blank" rel="noopener" href="http://www.baidu.com/item/item.html?id=1">http://www.baidu.com/item/item.html?id=1</a>；第一部分 http:&#x2F;&#x2F; 代表采用协议 ；第二部分 &lt;<a href="http://www.baidu.com>/">www.baidu.com&gt;</a> 代表 域名 也就是 ip和端口部分 ；第三部分 &#x2F;item&#x2F;item.html 资源路径；第四部分 ?id&#x3D;1 ?是分隔符 id&#x3D;1是向服务器提交的数据,也称为提交参数。</p>
+<h3 id="【2】简述B-S系统-和-C-S系统"><a href="#【2】简述B-S系统-和-C-S系统" class="headerlink" title="【2】简述B&#x2F;S系统 和 C&#x2F;S系统"></a>【2】简述B&#x2F;S系统 和 C&#x2F;S系统</h3><p>答：B&#x2F;S Browser&#x2F;Server 浏览器与服务器 网站 ；C&#x2F;S Client&#x2F;Server 客户端与服务器 王者荣耀 。</p>
+<h3 id="【3】请说明什么是静态资源？什么是动态资源？"><a href="#【3】请说明什么是静态资源？什么是动态资源？" class="headerlink" title="【3】请说明什么是静态资源？什么是动态资源？"></a>【3】请说明什么是静态资源？什么是动态资源？</h3><p>答：静态资源: 提供固定不变的数据 html css js 图片 多媒体；动态资源：在java中 指的是servlet和jsp。</p>
+<h3 id="【4】请说一下Servelt的三大组件有什么？"><a href="#【4】请说一下Servelt的三大组件有什么？" class="headerlink" title="【4】请说一下Servelt的三大组件有什么？"></a>【4】请说一下Servelt的三大组件有什么？</h3><p>答：servlet、过滤器、监听器。</p>
+<p><strong>Servlet</strong>:处理浏览器与服务器的请求与响应。</p>
+<p><strong>过滤器（Filter）：</strong>对Request请求起到过滤的作⽤，作⽤在Servlet之前，如果配置为&#x2F;*可以对所有的资源访问（servlet、js&#x2F;css静态资源等）进⾏过滤处理。</p>
+<p> <strong>监听器（Listener****）：</strong>实现了javax.servlet.ServletContextListener 接⼝的服务器端组件，它随 Web应⽤的启动⽽启动，只初始化⼀次，然后会⼀直运⾏监视，随Web应⽤的停⽌⽽销毁 </p>
+<p><strong>作⽤⼀：</strong>做⼀些初始化⼯作，web应⽤中spring容器启动ContextLoaderListener </p>
+<p><strong>作⽤⼆：</strong>监听web中的特定事件，⽐如HttpSession,ServletRequest的创建和销毁；变量的创建、销毁和修改等。可以在某些动作前后增加处理，实现监控，⽐如统计在线⼈数，利⽤ HttpSessionLisener等。</p>
+<h3 id="【5】Servlet生命周期"><a href="#【5】Servlet生命周期" class="headerlink" title="【5】Servlet生命周期"></a>【5】<strong>Servlet生命周期</strong></h3><p>答：</p>
+<ol>
+<li>执行Servlet的构造方法。</li>
+<li>执行 init() 方法。</li>
+<li>当接收到浏览器相应请求时执行 service() 方法。</li>
+<li>服务器关闭时执行 destroy() 方法。</li>
+</ol>
+<h3 id="【6】请简述Get请求与post请求："><a href="#【6】请简述Get请求与post请求：" class="headerlink" title="【6】请简述Get请求与post请求："></a>【6】<strong>请简述Get请求与post请求：</strong></h3><p>答：只要浏览器端没有指定post请求，默认都是get请求，浏览器端可以通过form表单指定为post请求方式。</p>
+<p>get请求与post请求区别如下：</p>
+<ol>
+<li>get请求的请求参数在请求头，post请求请求参数在请求体。</li>
+<li>get请求可以被缓存，post请求不能被缓存</li>
+<li>get请求数据是2048 个字符，post请求数据无限制</li>
+<li>get请求只能提交字符数据，post请求可以提交字符和字节数据。</li>
+</ol>
+<h3 id="【7】请简述请求转发与重定向的区别"><a href="#【7】请简述请求转发与重定向的区别" class="headerlink" title="【7】请简述请求转发与重定向的区别"></a>【7】<strong>请简述请求转发与重定向的区别</strong></h3><p>答：请求转发是指一个Servlet跳转到另一个Servlet或者Jsp的过程；请求转发具有以下特点：</p>
+<ol>
+<li>请求转发服务器内部跳转，不是浏览器端跳转，访问前后网址不变。</li>
+<li>所以转发前后的request作用域不变。</li>
+<li>转发前后的request属性数据共享。</li>
+<li>请求转发代码req.getRequestDispatcher(“服务器端访问路径”).forward(req, resp); </li>
+<li>转发前后保证提交方式一致。</li>
+</ol>
+<p> 重定向是指由服务器端或者客户端跳转到客户端过程；重定向的本质是结束本次访问过程，跳转到客户端为下一次访问做准备。重定向特点如下：</p>
+<ol>
+<li>是浏览器端跳转，网址改变。并且开启下一次请求。 </li>
+<li>本质上和a 标签，form 表单、location.href 这些重定向没有区别。</li>
+<li>Request对象数据不在共享。</li>
+<li>可以通过resp.sendRedirect(“index.html”)代码完成重定向。</li>
+</ol>
+<h3 id="【8】说一下Servlet的三大域对象"><a href="#【8】说一下Servlet的三大域对象" class="headerlink" title="【8】说一下Servlet的三大域对象"></a>【8】说一下Servlet的三大域对象</h3><p>答：request、session、ServletContext;</p>
+<p>​		request作用域是一次请求范围内，</p>
+<p>​		session是一次会话范围内，</p>
+<p>​		ServletContext整个上下文范围内。</p>
+<h3 id="【9】说一下会话技术"><a href="#【9】说一下会话技术" class="headerlink" title="【9】说一下会话技术"></a>【9】说一下会话技术</h3><p>答：会话技术指的是cookie技术与session技术。cookie是浏览器端缓存技术，可以保存一小段文本到浏览器中。session是服务器端技术，它的作用范围一个浏览器访问服务器的全部过程，服务器为每一个客户端在服务端都保存一个session对象来记录客户端信息。而浏览器端每次请求都会携带cookie数据到服务器端，其中一个cookie就记录自己的session的id值，用于告诉服务器自己的身份，而这个cookie也是服务器端创建session颁发给浏览器端的。</p>
+<h3 id="【10】聊一下websocket技术"><a href="#【10】聊一下websocket技术" class="headerlink" title="【10】聊一下websocket技术"></a>【10】<strong>聊一下websocket技术</strong></h3><p>答： HTTP 协议是一种无状态、无连接的、单向的应用协议。它采用了请求&#x2F;响应模型。通信请求只能由客户端发起，服务器对请求做出响应处理。</p>
+<p>HTTP通信模型有一个弊端：HTTP协议无法实现服务器主动向客户端发起消息。只能通过ajax循环发送请求解决聊天类通讯问题，这对服务的性能消耗非常大。webSocket从根本上解决了问题</p>
+<p>WebSocket 是一种基于NIO实现的网络通信协议,WebSocket 是HTML5 开始提供的一种在单个TCP连接上进行的全双工通讯协议；<strong>WebSocket是一种异步的消息通信技术。</strong> 我们可以通过WebSocket完成聊天功能。</p>
+<h3 id="【11】说一下git的常用操作命令："><a href="#【11】说一下git的常用操作命令：" class="headerlink" title="【11】说一下git的常用操作命令："></a><strong>【11】说一下git的常用操作命令：</strong></h3><p>答：本地库操作的命令有：</p>
+<ul>
+<li>git  init 初始化 </li>
+<li>git add 添加暂存区</li>
+<li>git commit 提交本地库</li>
+</ul>
+<p>分支命令：</p>
+<ul>
+<li>git branch 查看分支</li>
+<li>git branch 分支名 创建分支</li>
+<li>qit checkout 分支名 切换分支</li>
+<li>git merge 分支名 合并分支</li>
+</ul>
+<p>远程库命令：</p>
+<ul>
+<li>git remote add 添加远程库</li>
+<li>git remote 查看远程库</li>
+<li>git push 推送远程库</li>
+<li>git pull 远程库拉取到本地</li>
+<li>git clone 克隆远程库到本地</li>
+</ul>
+<h3 id="【12】说一下linux的常用操作命令："><a href="#【12】说一下linux的常用操作命令：" class="headerlink" title="【12】说一下linux的常用操作命令："></a><strong>【12】说一下linux的常用操作命令：</strong></h3><p>答：</p>
+<ul>
+<li><p>cd 切换目录</p>
+</li>
+<li><p>mkdir 目录名 创建目录</p>
+</li>
+<li><p>ls 查看目录</p>
+</li>
+<li><p>find 搜索目录</p>
+</li>
+<li><p>mv 修改剪切目录</p>
+</li>
+<li><p>cp -r 递归拷贝目录</p>
+</li>
+<li><p>rm -rf 强制删除文件和目录</p>
+</li>
+<li><p>touch 创建文件</p>
+</li>
+<li><p>cat&#x2F;more&#x2F;less&#x2F;tail 查看文件</p>
+</li>
+<li><p>vim 文件 修改文件内容</p>
+</li>
+<li><p>tar -zcvf 打包压缩</p>
+</li>
+<li><p>tar -xvf 解压缩包</p>
+</li>
+<li><p>pwd 显示当前位置</p>
+</li>
+<li><p>| 管道命令</p>
+</li>
+<li><p>ps -ef 查看进程</p>
+</li>
+<li><p>kill -9 进程id杀死进程</p>
+</li>
+<li><p>ip add 查看网卡信息</p>
+</li>
+<li><p>netstat -an 查看端口信息</p>
+</li>
+</ul>
+<h3 id="【13】说一下maven的依赖范围"><a href="#【13】说一下maven的依赖范围" class="headerlink" title="【13】说一下maven的依赖范围"></a><strong>【13】说一下maven的依赖范围</strong></h3><p>答：maven的依赖范围包含：compile(默认的依赖范围，在编译、测试、运行三种classpath都是有效的)、runtime（运行时的依赖范围，对测试和运行的classpath有效）、test（只对测试的classpath有效）、system（依赖范围与compile完全一致，区别在于需要使用systempath绑定本地的系统磁盘路径）、</p>
+<p>provided（对编译和测试的classpath是有效的，在运行时无效；例如servlet-api，在tomcat中是存在，只需要用来进行编译或测试，那么就需要设置为provided）</p>
+<h3 id="【14】说一下maven的依赖传递"><a href="#【14】说一下maven的依赖传递" class="headerlink" title="【14】说一下maven的依赖传递"></a><strong>【14】说一下maven的依赖传递</strong></h3><p>答：当项目中出现多个相同名，不同版本号的传递性依赖时，maven采用的原则有两个：</p>
+<ul>
+<li><p><em><strong>依赖路径短者优先</strong></em></p>
+<p>例如：一个项目依赖于A和B， A依赖于C，C依赖于D(1.0)，而B依赖于D(1.1)，此时的依赖路径为：</p>
+<p>|–&gt; A –&gt; C –&gt; D（1.0）</p>
+<p>|–&gt;B –&gt; D (1.1)</p>
+<p>显然D（1.1)的依赖路径较短，故系统中引入D（1.1）</p>
+</li>
+<li><p><em><strong>依赖路径长度相同，先声明者优先</strong></em></p>
+<p>例如：一个项目依赖于A和B，A依赖于C(1.0)，B依赖于C(1.1)，测试依赖路径为</p>
+<p>| –&gt; A –&gt; C(1.0)</p>
+<p>| –&gt; B –&gt; C(1.1)</p>
+<p>此时的依赖路径长度相同，故在pom文件中先声明哪一个依赖，会优先引入其传递的依赖</p>
+</li>
+</ul>
+<h3 id="【15】说一下maven的生命周期"><a href="#【15】说一下maven的生命周期" class="headerlink" title="【15】说一下maven的生命周期"></a><strong>【15】说一下maven的生命周期</strong></h3><p>答：Maven 中有三种标准的生命周期:</p>
+<ul>
+<li>clean：应用中目标目录中文件的清理周期</li>
+<li>default：应用从源代码构建成可执行的构件的周期</li>
+<li>site：项目站点文档创建的周期</li>
+</ul>
+<p>三个生命周期是相互独立，并且每个周期中包含很多的阶段，每个阶段的现实都是由插件完成的。</p>
+<p>其中最常用的default默认的生命周期，它包含<strong>compile（编译）、test（测试）、package（打包）install（安装）、deploy（部署）</strong>等阶段。</p>
+<h3 id="【16】简单描述一下ngingx服务器"><a href="#【16】简单描述一下ngingx服务器" class="headerlink" title="【16】简单描述一下ngingx服务器"></a><strong>【16】简单描述一下ngingx服务器</strong></h3><p>答：Nginx 是高性能的 HTTP 和反向代理的服务器，处理高并发能力是十分强大的，能经受高负载的考验,有报告表明能支持高达 50,000 个并发连接数。nginx服务器主要包含：反向代理、负载均衡、动静分离等技术。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/java%E9%9D%A2%E8%AF%95%E9%A2%98/" class="print-no-link">#java面试题</a>
+      
+        <a href="/tags/%E5%8E%9F%E5%88%9B/" class="print-no-link">#原创</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>9.javaweb</div>
+      <div>http://example.com/2023/09/14/9-javaweb/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>嘟小嘴</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月14日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年9月14日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/09/14/10-ssm%E6%A1%86%E6%9E%B6/" title="10.ssm框架">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">10.ssm框架</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/09/14/8-%E5%89%8D%E7%AB%AF/" title="8.前端">
+                        <span class="hidden-mobile">8.前端</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"YdGP8UOgPO4ZRNTwlQPPSYYJ-gzGzoHsz","appKey":"Imt0sPysGbwXpPLZzZlEMJGu","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <i href="#"  class="iconfont icon-love">Duxiaozui博客</i> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1141 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/image/fluid.png">
+  <link rel="icon" href="/image/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="嘟小嘴">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="SSM框架第一章 知识复盘MyBatis Mybatis开发流程 输入映射与输出映射 动态标签 缓存 多表查询  Spring IOC和DI 配置类 JDK与CGLIB动态代理 AOP  SpringMVC SpringMVC执行流程  SpringMVC常用注解  SpringMVC拦截器  SpringMVC异常处理  SpringMVC上传  SSM整合   第二章 常见面试题【1】请说明一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10.ssm框架">
+<meta property="og:url" content="http://example.com/2023/09/14/10-ssm%E6%A1%86%E6%9E%B6/index.html">
+<meta property="og:site_name" content="嘟小嘴">
+<meta property="og:description" content="SSM框架第一章 知识复盘MyBatis Mybatis开发流程 输入映射与输出映射 动态标签 缓存 多表查询  Spring IOC和DI 配置类 JDK与CGLIB动态代理 AOP  SpringMVC SpringMVC执行流程  SpringMVC常用注解  SpringMVC拦截器  SpringMVC异常处理  SpringMVC上传  SSM整合   第二章 常见面试题【1】请说明一">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-09-14T06:57:58.000Z">
+<meta property="article:modified_time" content="2023-09-14T09:03:16.305Z">
+<meta property="article:author" content="嘟小嘴">
+<meta property="article:tag" content="java面试题">
+<meta property="article:tag" content="原创">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>10.ssm框架 - 嘟小嘴</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"YdGP8UOgPO4ZRNTwlQPPSYYJ-gzGzoHsz","app_key":"Imt0sPysGbwXpPLZzZlEMJGu","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 75vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>嘟小嘴</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/image/%E6%96%87%E7%AB%A0%E9%BB%98%E8%AE%A4.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="10.ssm框架"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        嘟小嘴
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-14 14:57" pubdate>
+          2023年9月14日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          77 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">10.ssm框架</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：4 天前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="SSM框架"><a href="#SSM框架" class="headerlink" title="SSM框架"></a>SSM框架</h1><h2 id="第一章-知识复盘"><a href="#第一章-知识复盘" class="headerlink" title="第一章 知识复盘"></a>第一章 知识复盘</h2><h3 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h3><ol>
+<li>Mybatis开发流程</li>
+<li>输入映射与输出映射</li>
+<li>动态标签</li>
+<li>缓存</li>
+<li>多表查询</li>
+</ol>
+<h3 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h3><ol>
+<li>IOC和DI</li>
+<li>配置类</li>
+<li>JDK与CGLIB动态代理</li>
+<li>AOP</li>
+</ol>
+<h3 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h3><ol>
+<li><p>SpringMVC执行流程</p>
+</li>
+<li><p>SpringMVC常用注解</p>
+</li>
+<li><p>SpringMVC拦截器</p>
+</li>
+<li><p>SpringMVC异常处理</p>
+</li>
+<li><p>SpringMVC上传</p>
+</li>
+<li><p>SSM整合</p>
+</li>
+</ol>
+<h2 id="第二章-常见面试题"><a href="#第二章-常见面试题" class="headerlink" title="第二章 常见面试题"></a>第二章 常见面试题</h2><h3 id="【1】请说明一下Mybatis执行流程"><a href="#【1】请说明一下Mybatis执行流程" class="headerlink" title="【1】请说明一下Mybatis执行流程"></a><strong>【1】请说明一下Mybatis执行流程</strong></h3><p>答：</p>
+<ol>
+<li>初始化Mybatis框架运行环境（加载配置文件：SqlMapConfig.xml、Mapper.xml）。</li>
+<li>根据配置信息构建SqlSessionFactory。</li>
+<li>使用SqlSessionFactory创建数据库连接实例SqlSession。</li>
+<li>SqlSession实例调用内部的Executor执行器。</li>
+<li>执行器把传入参数映射到MappedStatement中的sql语句中，相当于是JDBC中的预编译、设置参数，Mapper.xml中配置每条sql语句都是一个MappedStatement。</li>
+<li>完成数据库操作后，会把输出结果进行封装，相当于是JDBC中的结果集解析的过程。</li>
+</ol>
+<h3 id="【2】请说一下你应用Mybatis的过程"><a href="#【2】请说一下你应用Mybatis的过程" class="headerlink" title="【2】请说一下你应用Mybatis的过程"></a><strong>【2】请说一下你应用Mybatis的过程</strong></h3><p>答：</p>
+<ol>
+<li>导入依赖</li>
+<li>编写核心配置文件与日志文件（整合mybatis环境）</li>
+<li>依据数据库编写实体类</li>
+<li>编写mapper接口与Mapper.xml配置文件<ol>
+<li>对应的mapper配置文件的namespace属性值必须是Mapper接口的全类名</li>
+<li>Mapper接口中的方法名必须与mapper配置文件中对应的id值相同。</li>
+<li>Mapper接口的方法的参数类型必须与mapper配置文件中配置的parameterType类型匹配上</li>
+<li>Mapper接口的方法返回值类型必须与mapper配置文件中配置的resultType 类型匹配上</li>
+</ol>
+</li>
+<li>根据不同sql，编写不同的标签，select,insert,delete,update标签</li>
+</ol>
+<h3 id="【3】请说一下SqlMapConfig核心配置功能"><a href="#【3】请说一下SqlMapConfig核心配置功能" class="headerlink" title="【3】请说一下SqlMapConfig核心配置功能"></a><strong>【3】请说一下SqlMapConfig核心配置功能</strong></h3><ol>
+<li>所有标签都有配置顺序</li>
+<li>properties 标签 引入数据源</li>
+<li>setting 全局设置 驼峰式、缓存、日志、延迟加载</li>
+<li>别名配置</li>
+<li>mapper配置</li>
+</ol>
+<h3 id="【4】请说一下Mybatis的输入映射与输出映射"><a href="#【4】请说一下Mybatis的输入映射与输出映射" class="headerlink" title="【4】请说一下Mybatis的输入映射与输出映射"></a><strong>【4】请说一下Mybatis的输入映射与输出映射</strong></h3><p>输入映射指的是标签parameterType 与mapper 接口参数之间的映射</p>
+<ol>
+<li>简单类型使用#{}可以写入任意值</li>
+<li>javaBean #{参数名} 必须和javaBean的字段名保持相同</li>
+<li>包装类类型#{参数名}必须和&#x3D;&#x3D;属性对象.属性名字&#x3D;&#x3D;保持相同；严格遵循OGNL表达式</li>
+<li>多参数类型，多个参数的参数名需要@param（参数名）指定， 占位符直接使用#{参数名}</li>
+<li>Map类型，#{} 的参数必须是和map集合的key的名字相同</li>
+</ol>
+<p>输出映射指的是ResultType属性和mapper接口方法返回值之间的映射</p>
+<ol>
+<li>简单类型映射</li>
+<li>javaBean类型 映射 返回字段必须和javaBean名字相同，可开启驼峰式，让user_id userId</li>
+<li>复杂类型用ResultMap指定映射关系</li>
+</ol>
+<p>可以配置插入数据生成id值</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--返回自动生成的id值</span><br><span class="hljs-comment">    1.useGeneratedKeys 打开使用自动生成id的开关</span><br><span class="hljs-comment">    2.keyColumn 数据库表返回的主键字段</span><br><span class="hljs-comment">    3.keyProperty javaBean类中属性对应的名字</span><br><span class="hljs-comment">    --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;insertUserReturnId&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;user&quot;</span> <span class="hljs-attr">useGeneratedKeys</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">keyColumn</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">keyProperty</span>=<span class="hljs-string">&quot;id&quot;</span>&gt;</span><br>    insert into t_user(username,address,description) values(#&#123;username&#125;,#&#123;address&#125;,#&#123;description&#125;)<br><span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">insert</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;insertUserReturnId&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;user&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--selectKey 配置的是获取id值的sql函数</span><br><span class="hljs-comment">                1.keyColumn 数据库主键</span><br><span class="hljs-comment">                2.keyProperty=&quot;id&quot; 类中属性名</span><br><span class="hljs-comment">                3.resultType 主键返回的类型</span><br><span class="hljs-comment">                4.order:只能配置两个值AFTER、BEFORE</span><br><span class="hljs-comment">                    1.AFTER代表函数在添加sql语句执行后执行</span><br><span class="hljs-comment">                    2.BEFORE代表函数在添加sql语句执行前执行</span><br><span class="hljs-comment">        --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">selectKey</span> <span class="hljs-attr">keyColumn</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">keyProperty</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;int&quot;</span> <span class="hljs-attr">order</span>=<span class="hljs-string">&quot;AFTER&quot;</span>&gt;</span><br>        select last_insert_id()<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">selectKey</span>&gt;</span><br>    insert into t_user(username,address,description) values(#&#123;username&#125;,#&#123;address&#125;,#&#123;description&#125;)<br><span class="hljs-tag">&lt;/<span class="hljs-name">insert</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="【5】Mybatis动态标签有哪些"><a href="#【5】Mybatis动态标签有哪些" class="headerlink" title="【5】Mybatis动态标签有哪些"></a><strong>【5】Mybatis动态标签有哪些</strong></h3><ol>
+<li>if</li>
+<li>where</li>
+<li>choose 、when 、otherwise</li>
+<li>foreach</li>
+</ol>
+<h3 id="【6】请你说明一下mybatis缓存"><a href="#【6】请你说明一下mybatis缓存" class="headerlink" title="【6】请你说明一下mybatis缓存"></a><strong>【6】请你说明一下mybatis缓存</strong></h3><p>答：mybatis分为一级缓存和二级缓存</p>
+<p>一级缓存是sqlSession内部间的缓存</p>
+<p>查询sql语句时，优先从一级缓存中获取数据，如果没有，查询数据库，将数据库查询结果返回给1级缓存，然后在返回。</p>
+<p>二级缓存是sqlSession间的缓存，也就是多个sqlSession之间的缓存</p>
+<p>如果开启二级缓存。查询sql语句时，优先从二级缓存中查找结果，如果没有找到去一级缓存去找，如果没有找到去数据库去查询，将查询结果先存入一级缓存，在存入二级缓存，在返回。</p>
+<h3 id="【7】请说明一下Mybatis如何实现多表查询"><a href="#【7】请说明一下Mybatis如何实现多表查询" class="headerlink" title="【7】请说明一下Mybatis如何实现多表查询"></a><strong>【7】请说明一下Mybatis如何实现多表查询</strong></h3><ol>
+<li>一对一关联查询，通过resultMap标签进行映射，用association子标签表示一对一映射关系</li>
+<li>一对多关联查询，通过resultMap标签进行映射，用collection子标签表示一对多映射关系。</li>
+<li>延迟加载指的是如果只使用主对象数据，那么只查询主sql语句，只有调用主对象的子属性时，才去调用用collection&#x2F;association 标签的select属性关联的子查询sql语句。</li>
+</ol>
+<h3 id="【8】什么是-Mybatis？"><a href="#【8】什么是-Mybatis？" class="headerlink" title="【8】什么是 Mybatis？"></a><strong>【8】什么是 Mybatis？</strong></h3><p>答：</p>
+<ol>
+<li>Mybatis 是一个半 ORM（对象关系映射）框架，它内部封装了 JDBC，开发时只需要关注 SQL 语句本身，不需要花费精力去处理加载驱动、创建连接、创建statement 等繁杂的过程。程序员直接编写原生态 sql，可以严格控制 sql 执行性能，灵活度高。</li>
+<li>MyBatis 可以使用 XML 或注解来配置和映射原生信息，将 POJO 映射成数据库中的记录，避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。</li>
+<li>通过 xml 文件或注解的方式将要执行的各种 statement 配置起来，并通过java 对象和 statement 中 sql 的动态参数进行映射生成最终执行的 sql 语句，最后由 mybatis 框架执行 sql 并将结果映射为 java 对象并返回。（从执行 sql 到返回 result 的过程）。</li>
+</ol>
+<h3 id="【9】Mybaits-的优点："><a href="#【9】Mybaits-的优点：" class="headerlink" title="【9】Mybaits 的优点："></a><strong>【9】Mybaits 的优点：</strong></h3><p>答：</p>
+<ol>
+<li>基于 SQL 语句编程，相当灵活，不会对应用程序或者数据库的现有设计造成任何影响，SQL 写在 XML 里，解除 sql 与程序代码的耦合，便于统一管理；提供 XML标签，支持编写动态 SQL 语句，并可重用。</li>
+<li>与 JDBC 相比，减少了 50%以上的代码量，消除了 JDBC 大量冗余的代码，不需要手动开关连接；</li>
+<li>很好的与各种数据库兼容（因为 MyBatis 使用 JDBC 来连接数据库，所以只要JDBC 支持的数据库 MyBatis 都支持）。</li>
+<li>能够与 Spring 很好的集成；</li>
+<li>提供映射标签，支持对象与数据库的 ORM 字段关系映射；提供对象关系映射标签，支持对象关系组件维护。</li>
+</ol>
+<h3 id="【10】MyBatis-框架的缺点："><a href="#【10】MyBatis-框架的缺点：" class="headerlink" title="【10】MyBatis 框架的缺点："></a><strong>【10】MyBatis 框架的缺点：</strong></h3><ol>
+<li>SQL 语句的编写工作量较大，尤其当字段多、关联表多时，对开发人员编写SQL 语句的功底有一定要求。</li>
+<li>SQL 语句依赖于数据库，导致数据库移植性差，不能随意更换数据库。</li>
+</ol>
+<h3 id="【11】MyBatis-框架适用场合："><a href="#【11】MyBatis-框架适用场合：" class="headerlink" title="【11】MyBatis 框架适用场合："></a><strong>【11】MyBatis 框架适用场合：</strong></h3><ol>
+<li>MyBatis 专注于 SQL 本身，是一个足够灵活的 DAO 层解决方案。</li>
+<li>对性能的要求很高，或者需求变化较多的项目，如互联网项目，MyBatis 将是不错的选择。</li>
+</ol>
+<h3 id="【12】MyBatis-与-Hibernate-有哪些不同？"><a href="#【12】MyBatis-与-Hibernate-有哪些不同？" class="headerlink" title="【12】MyBatis 与 Hibernate 有哪些不同？"></a><strong>【12】MyBatis 与 Hibernate 有哪些不同？</strong></h3><ol>
+<li><p>Mybatis 和 hibernate 不同，它不完全是一个 ORM 框架，因为 MyBatis 需要程序员自己编写 Sql 语句。</p>
+</li>
+<li><p>Mybatis 直接编写原生态 sql，可以严格控制 sql 执行性能，灵活度高，非常适合对关系数据模型要求不高的软件开发，因为这类软件需求变化频繁，一但需求变化要求迅速输出成果。但是灵活的前提是 mybatis 无法做到数据库无关性，如果需要实现支持多种数据库的软件，则需要自定义多套 sql 映射文件，工作量大。</p>
+</li>
+<li><p>Hibernate 对象&#x2F;关系映射能力强，数据库无关性好，对于关系模型要求高的软件，如果用 hibernate 开发可以节省很多代码，提高效率。</p>
+</li>
+</ol>
+<h3 id="【13】-和-的区别是什么？-是预编译处理，-是字符串替换。"><a href="#【13】-和-的区别是什么？-是预编译处理，-是字符串替换。" class="headerlink" title="【13】#{}和${}的区别是什么？#{} 是预编译处理，${}是字符串替换。"></a><strong>【13】#{}和${}的区别是什么？#{} 是预编译处理，${}是字符串替换。</strong></h3><p>答：Mybatis 在处理#{}时，会将 sql 中的#{}替换为?号，调用 PreparedStatement 的set 方法来赋值；</p>
+<p>​		Mybatis 在处理${}时，就是把${}替换成变量的值。使用#{}可以有效的防止 SQL 注入，提高系统安全性。</p>
+<h3 id="【14】当实体类中的属性名和表中的字段名不一样-，怎么办-？"><a href="#【14】当实体类中的属性名和表中的字段名不一样-，怎么办-？" class="headerlink" title="【14】当实体类中的属性名和表中的字段名不一样 ，怎么办 ？"></a><strong>【14】当实体类中的属性名和表中的字段名不一样 ，怎么办 ？</strong></h3><p>答：第 1 种： 通过在查询的 sql 语句中定义字段名的别名，让字段名的别名和实体类的属性名一致。<br>第 2 种：通过 <strong><resultMap></resultMap></strong> 来映射字段名和实体类属性名的一一对应的关系。</p>
+<h3 id="【15】通常一个-Xml-映射文件，都会写一个-Dao-接口与之对应，请问，这个-Dao-接口的工作原理是什么？Dao-接口里的方法，参数不同时，方法能重载吗？"><a href="#【15】通常一个-Xml-映射文件，都会写一个-Dao-接口与之对应，请问，这个-Dao-接口的工作原理是什么？Dao-接口里的方法，参数不同时，方法能重载吗？" class="headerlink" title="【15】通常一个 Xml 映射文件，都会写一个 Dao 接口与之对应，请问，这个 Dao 接口的工作原理是什么？Dao 接口里的方法，参数不同时，方法能重载吗？"></a><strong>【15】通常一个 Xml 映射文件，都会写一个 Dao 接口与之对应，请问，这个 Dao 接口的工作原理是什么？Dao 接口里的方法，参数不同时，方法能重载吗？</strong></h3><p>答：Dao 接口即 Mapper 接口。接口的全限名，就是映射文件中的 namespace 的值；接口的方法名，就是映射文件中 Mapper 的 Statement 的 id 值；接口方法内的参数，就是传递给 sql 的参数。Mapper 接口是没有实现类的，当调用接口方法时，接口全限名+方法名拼接字符串作为 key 值，可唯一定位一个 MapperStatement。在 Mybatis 中，每一个<code>&lt;select&gt;、&lt;insert&gt;、&lt;update&gt;、&lt;delete&gt;</code> 标签，都会被解析为一个MapperStatement 对象。举例： com.mybatis3.mappers.StudentDao.findStudentById ，可以唯一找到 namespace 为 com.mybatis3.mappers.StudentDao 下面 id 为findStudentById 的 MapperStatement。Mapper 接口里的方法，是不能重载的，因为是使用 全限名+方法名 的保存和寻找策略。Mapper 接口的工作原理是 JDK 动态代理，Mybatis 运行时会使用 JDK动态代理为 Mapper 接口生成代理对象 proxy，代理对象会拦截接口方法，转而执行 MapperStatement 所代表的 sql，然后将 sql 执行结果返回。</p>
+<h3 id="【16】Mybatis-是如何进行分页的？分页插件的原理是什么？"><a href="#【16】Mybatis-是如何进行分页的？分页插件的原理是什么？" class="headerlink" title="【16】Mybatis 是如何进行分页的？分页插件的原理是什么？"></a><strong>【16】Mybatis 是如何进行分页的？分页插件的原理是什么？</strong></h3><p>答：Mybatis 使用 RowBounds 对象进行分页，它是针对 ResultSet 结果集执行的内存分页，而非物理分页。可以在 sql 内直接书写带有物理分页的参数来完成物理分页功能，也可以使用分页插件来完成物理分页。分页插件的基本原理是使用 Mybatis 提供的插件接口，实现自定义插件，在插件的拦截方法内拦截待执行的 sql，然后重写 sql，根据 dialect 方言，添加对应的物理分页语句和物理分页参数。</p>
+<h3 id="【17】Mybatis是如何将sql执行结果封装为目标对象并返回的？都有哪些映射形式？"><a href="#【17】Mybatis是如何将sql执行结果封装为目标对象并返回的？都有哪些映射形式？" class="headerlink" title="【17】Mybatis是如何将sql执行结果封装为目标对象并返回的？都有哪些映射形式？"></a><strong>【17】Mybatis是如何将sql执行结果封装为目标对象并返回的？都有哪些映射形式？</strong></h3><p>答：第一种是使用 <resultMap> 标签，逐一定义数据库列名和对象属性名之间的映射关系。<br>        第二种是使用 sql 列的别名功能，即resultType属性映射。将列的别名书写为对象属性名。有了列名与属性名的映射关系后，Mybatis 通过反射创建对象，同时使用反射给对象的属性逐一赋值并返回，那些找不到映射关系的属性，是无法完成赋值的。</resultMap></p>
+<h3 id="【18】IOC和DI的概念"><a href="#【18】IOC和DI的概念" class="headerlink" title="【18】IOC和DI的概念"></a><strong>【18】IOC和DI的概念</strong></h3><p>IOC是控制反转，指的是将对象的创建权交给Spring框架IOC容器与维护，IOC容器底层就是CurrentHashMap集合，通过反射加载配置文件或配置类创建对象放入集合中。DI是依赖注入，指的SpringIOC容器帮助我们将配置文件中的属性以setter方法或构造方法或字段的方式注入。</p>
+<h3 id="【19】IOC的实现方式与DI的实现方式"><a href="#【19】IOC的实现方式与DI的实现方式" class="headerlink" title="【19】IOC的实现方式与DI的实现方式"></a><strong>【19】IOC的实现方式与DI的实现方式</strong></h3><p>IOC的实现方式</p>
+<ol>
+<li>xml实现<ol>
+<li>构造方法</li>
+<li>静态工厂</li>
+<li>实例工厂</li>
+</ol>
+</li>
+<li>xml+注解实现<ol>
+<li>包扫描+注解<ol>
+<li>@Controller</li>
+<li>@Service</li>
+<li>@Repository</li>
+<li>@Component</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>配置类实现<ol>
+<li>@Configuration+@Bean</li>
+</ol>
+</li>
+</ol>
+<p>DI的实现方式</p>
+<ol>
+<li>xml<ol>
+<li>setter方法</li>
+<li>构造方法</li>
+<li>springEL表达书注入#{springEl表达式}</li>
+</ol>
+</li>
+<li>注解<ol>
+<li>@Autowired  按照类型自动注入</li>
+<li>@Autowired+@Qualifier 按照类型自动注入，如果失败按照名字注入</li>
+<li>@Resource 按照名字注入</li>
+<li>@Value注入简单类型 支持${}表达式读取properties内容，支持#{}springEL表达式</li>
+</ol>
+</li>
+</ol>
+<h3 id="【20】配置类常用注解"><a href="#【20】配置类常用注解" class="headerlink" title="【20】配置类常用注解"></a><strong>【20】配置类常用注解</strong></h3><ol>
+<li>@Configuration 表示当前类是一个配置类</li>
+<li>@Bean 相当于bean标签</li>
+<li>@PropertySource 引入properties配置文件</li>
+<li>@Import 导入其他配置类</li>
+</ol>
+<h3 id="【21】SpringIOC的生命周期"><a href="#【21】SpringIOC的生命周期" class="headerlink" title="【21】SpringIOC的生命周期"></a><strong>【21】SpringIOC的生命周期</strong></h3><ol>
+<li>singleton（单例Bean）<ul>
+<li>初始化：容器初始化时就会创建Bean，可以通过延迟加载设置，如果lazy-init&#x3D;true在获取对象的时候才创建并初始化</li>
+<li>存活：只要容器存在，Bean就一直存在</li>
+<li>销毁：当容器销毁时，Bean也被销毁</li>
+</ul>
+</li>
+<li>prototype（多例Bean）<ul>
+<li>初始化：每一次访问Bean实例时，创建Bean</li>
+<li>存活：只要Bean实例被使用，Bean就一直存在</li>
+<li>销毁：当Bean实例不常用时，会被Java的回收机制自动回收</li>
+</ul>
+</li>
+</ol>
+<h3 id="【22】JDK动态代理与CGlib动态代理"><a href="#【22】JDK动态代理与CGlib动态代理" class="headerlink" title="【22】JDK动态代理与CGlib动态代理"></a><strong>【22】JDK动态代理与CGlib动态代理</strong></h3><ul>
+<li>原理区别<ul>
+<li>JDK动态代理是利用反射机制生成一个实现代理接口的匿名类，在调用具体的方法之前调用InvocationHandler</li>
+<li>CGLIB动态代理是利用ASM开源包，对被代理类的class文件进行字节码修改，生成被代理类的子类，覆盖目标方法。</li>
+</ul>
+</li>
+<li>依赖区别<ul>
+<li>JDK动态代理，不需要第三方的库，只要JDK环境就可以；</li>
+<li>CGLIB动态代理，需要加入cglib、asm的类库</li>
+</ul>
+</li>
+<li>要求区别<ul>
+<li>JDK动态代理，被代理的类必须有实现的接口</li>
+<li>CGLIB动态代理，针对具体的实现类进行代理，但是类不能用final修饰。</li>
+</ul>
+</li>
+<li>编程区别<ul>
+<li>JDK动态代理，需要实现InvocationHandler接口编写增强、使用Proxy.newInstance获取代理对象</li>
+<li>CGLIB动态代理，实现MethodInterceptor接口中的invoke方法实现增强，使用Enhancer根据被代理对象和增强修改字节码文件。</li>
+</ul>
+</li>
+</ul>
+<h3 id="【23】AOP-面向切面编程概念"><a href="#【23】AOP-面向切面编程概念" class="headerlink" title="【23】AOP 面向切面编程概念"></a><strong>【23】AOP 面向切面编程概念</strong></h3><ol>
+<li>AOP的概念</li>
+</ol>
+<p>AOP打破传统意义的面向对象的纵向编程，底层依赖GDK&#x2F;CGLIB动态代理+配置文件实现面向切面编程，将程序升级为横向编程。具体实现过程是通过动态代理将某个程序执行过程中织入前置通知&#x2F;返回通知&#x2F;环绕通知&#x2F;异常通知的过程。</p>
+<ol>
+<li>AOP配置<ol>
+<li>配置目标类</li>
+<li>配置AOP配置<ol>
+<li>配置切入点</li>
+<li>配置切面</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>@Aspect 表示是一个切面类</p>
+<h3 id="【24】简述事务"><a href="#【24】简述事务" class="headerlink" title="【24】简述事务"></a><strong>【24】简述事务</strong></h3><p>事务是逻辑上的一组操作，要么都执行，要么都不执行。</p>
+<p>事务要满足acid执行原则</p>
+<ul>
+<li><strong>原子性</strong>（Atomicity）：务是最小的执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用；</li>
+<li><strong>一致性</strong>（Consistency）： 执行事务前后，数据保持一致；</li>
+<li><strong>隔离性</strong>（Isolation）： 并发访问数据库时，一个用户的事务不被其他事务所干扰，各并发事务之间数据库是独立的；</li>
+<li><strong>持久性</strong>（Durability）: 一个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。</li>
+</ul>
+<p>事务的隔离级别</p>
+<ol>
+<li>ISOLATION_READ_UNCOMMITTED  可能发生脏读、可重复读、幻读</li>
+<li>ISOLATION_READ_COMMITTED 避免脏读，不能避免可重复读，幻读的发生</li>
+<li>ISOLATION_REPEATABLE_READ 避免脏读，不可重复读问题的发生，不能避免幻读发生</li>
+<li>ISOLATION_SERIALIZABLE 避免脏读，不可重复读、幻读发生。</li>
+</ol>
+<p>Spring事务管理接口</p>
+<ol>
+<li>PlatformTransactionManager 指定事务管理器 </li>
+<li>TransactionDefinition 事务的定义信息</li>
+<li>TransactionStatus 事务的状态记录</li>
+</ol>
+<p>事务注解：@Transactional</p>
+<p>事务传播行为</p>
+<ol>
+<li>PROPAGATION_REQUIRED 如果当前存在事务，则加入该事务； 如果当前没有事务，则创建一个新的事务。【默认】</li>
+<li>PROPAGATION_REQUIRES_NEW   创建一个新的事务，如果当前存在事务，则把当前事务挂起。</li>
+</ol>
+<h3 id="【25】SpringMVC执行流程"><a href="#【25】SpringMVC执行流程" class="headerlink" title="【25】SpringMVC执行流程"></a><strong>【25】SpringMVC执行流程</strong></h3><ol>
+<li>浏览器发送请求至应用程序，被前端控制器（DispatcherServlet）接收；</li>
+<li>前端控制器调用处理器映射器（HandlerMapping）查找处理器（Handler）；</li>
+<li>处理器映射器根据请求映射从Spring容器中获取得到处理器（Handler，也是自定义的Controller）；</li>
+<li>处理器映射器组装处理器执行链（HandlerExecutionChain），返回给前端控制器；</li>
+<li>前端控制器找到合适的处理器适配器（HandlerAdapter）；</li>
+<li>处理器适配器执行处理器，处理器（Controller）执行完成后返回模型和视图（ModelAndView）；</li>
+<li>处理器适配器把模型和试图返回给前端控制器；</li>
+<li>前端控制器调用视图解析器（ViewReslover）解析模型和视图（ModelAndView）；</li>
+<li>视图解析器解析完成后，返回具体的视图（View）；</li>
+<li>前端控制器进行视图渲染（即把模型数据填充到视图中），最终响应浏览器的请求。</li>
+</ol>
+<h3 id="【26】SpringMVC常用注解"><a href="#【26】SpringMVC常用注解" class="headerlink" title="【26】SpringMVC常用注解"></a><strong>【26】SpringMVC常用注解</strong></h3><ol>
+<li>@Controlelr </li>
+<li>@RequestMapping</li>
+<li>@RestController &#x3D; @ResponseBody+@Controller</li>
+<li>@ControllerAdvice  开启springMVC的全局异常处理包扫描 ，处理服务器端渲染开发</li>
+<li>@RestControllerAdvice  开启springMVC的全局异常处理包扫描 ，处理前后端分离开发</li>
+<li>@PostMapping @GetMapping @DeleteMapping @ PutMapping @RequestMapping</li>
+<li>@ResponseBody @RequestBody</li>
+<li>@PathVariable @RequestParam</li>
+</ol>
+<h3 id="【27】SpringMVC如何配置请求转发，重定向，如何存储转发数据"><a href="#【27】SpringMVC如何配置请求转发，重定向，如何存储转发数据" class="headerlink" title="【27】SpringMVC如何配置请求转发，重定向，如何存储转发数据"></a><strong>【27】SpringMVC如何配置请求转发，重定向，如何存储转发数据</strong></h3><p>controler方法返回值return “逻辑视图” 请求转发 return “redirect:” 重定向方法参数上的Model&#x2F;ModelMap&#x2F;Request存储</p>
+<h3 id="【28】SpringMVC的参数绑定"><a href="#【28】SpringMVC的参数绑定" class="headerlink" title="【28】SpringMVC的参数绑定"></a><strong>【28】SpringMVC的参数绑定</strong></h3><ol>
+<li>简单类型参数绑定，如果提交的参数key和参数名字不一致，用@RequestParam注解处理</li>
+<li>javaBean类型的参数绑定</li>
+<li>数组类型绑定</li>
+<li>简单集合类型绑定</li>
+<li>@RequestBody 接收浏览器提交json数据</li>
+<li>@PathVariable 接收restful风格路径上的参数</li>
+</ol>
+<h3 id="【29】除了基本的SpringMVC操作外，还用过哪些功能？"><a href="#【29】除了基本的SpringMVC操作外，还用过哪些功能？" class="headerlink" title="【29】除了基本的SpringMVC操作外，还用过哪些功能？"></a><strong>【29】除了基本的SpringMVC操作外，还用过哪些功能？</strong></h3><ol>
+<li><p>自定义类型转换器</p>
+<ol>
+<li>实现Converter接口</li>
+<li>配置类型转换器</li>
+</ol>
+</li>
+<li><p>SpringMVC常用标签</p>
+<ol>
+<li><p>静态资源映射：</p>
+<p>&lt;mvc:resources mapping&#x3D;”&#x2F;js&#x2F;**” location&#x3D;”&#x2F;js&#x2F;“ &#x2F;&gt;</p>
+<!--对静态资源放行-->
+<p>&lt;mvc:default-servlet-handler &#x2F;&gt;</p>
+</li>
+<li><p>&lt;mvc:view-controller path&#x3D;”&#x2F;loginUI” view-name&#x3D;”login” &#x2F;&gt;</p>
+</li>
+</ol>
+</li>
+<li><p>文件上传</p>
+<ol>
+<li><p>表单post请求</p>
+</li>
+<li><p>表单类型设置为 multipart&#x2F;form-data</p>
+</li>
+<li><p>编写代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> String <span class="hljs-title function_">update</span><span class="hljs-params">(MultipartFile img)</span>&#123;<br>       <span class="hljs-type">String</span> <span class="hljs-variable">newFileName</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>       <span class="hljs-keyword">try</span> &#123;<br>           <span class="hljs-comment">//获得上传的名字</span><br>           <span class="hljs-type">String</span> <span class="hljs-variable">filename</span> <span class="hljs-operator">=</span> img.getOriginalFilename();<br>           newFileName = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>().getTime()+(<span class="hljs-type">int</span>)(Math.random()*(<span class="hljs-number">100</span>))+filename;<br>           System.out.println(baseUrl);<br>           <span class="hljs-comment">//上传到指定位置</span><br>           img.transferTo(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(baseUrl+<span class="hljs-string">&quot;/&quot;</span>+newFileName));<br>       &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>           e.printStackTrace();<br>           <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;no&quot;</span>;<br>       &#125;<br>       <span class="hljs-keyword">return</span> newFileName;<br>   &#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>处理器拦截器</p>
+<ol>
+<li>实现HandlerInterceptor接口<ol>
+<li>preHandle  controlelr代码执行前执行</li>
+<li>postHandle controller代码执行后执行</li>
+<li>afterCompletion 页面渲染后执行</li>
+</ol>
+</li>
+<li>配置拦截器</li>
+</ol>
+</li>
+<li><p>异常处理机制</p>
+<ol>
+<li>@ControllerAdvice+ @ExceptionHandler 处理服务器端渲染开发的全局异常</li>
+<li>@RestControllerAdvice+@ExceptionHandler 处理前后端分离开发的全局异常</li>
+<li>实现HandlerExceptionResolver 接口编写自定义方案异常处理</li>
+</ol>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/java%E9%9D%A2%E8%AF%95%E9%A2%98/" class="print-no-link">#java面试题</a>
+      
+        <a href="/tags/%E5%8E%9F%E5%88%9B/" class="print-no-link">#原创</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>10.ssm框架</div>
+      <div>http://example.com/2023/09/14/10-ssm框架/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>嘟小嘴</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月14日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年9月14日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/09/14/11-springboot/" title="11.springboot">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">11.springboot</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/09/14/9-javaweb/" title="9.javaweb">
+                        <span class="hidden-mobile">9.javaweb</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"YdGP8UOgPO4ZRNTwlQPPSYYJ-gzGzoHsz","appKey":"Imt0sPysGbwXpPLZzZlEMJGu","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <i href="#"  class="iconfont icon-love">Duxiaozui博客</i> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
